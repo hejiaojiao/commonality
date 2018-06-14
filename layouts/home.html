@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/font/css/font-awesome.css" rel="stylesheet">
+    <link href="../assets/css/pageStyle.css" rel="stylesheet">
+    <link href="../dist/css/all.css" rel="stylesheet">
+</head>
+<body ng-app="commonalityApp">
+ <div class="pages-content" ng-controller="homeController">
+        <nav>
+            <div class="container clearfix">
+                <div class="header-title pull-left">DOC</div>
+                <ul class="header-list pull-left">
+                    <li class="header-list-item" ng-click="cssClick()" ng-class="{'active':isClick == 1}">全局CSS样式</li>
+                    <li class="header-list-item" ng-click="scriptClick()" ng-class="{'active':isClick == 2}">JavaScript插件</li>
+                </ul>
+            </div>
+        </nav>
+         <header>
+             <div class="container">
+                 <h3>{{sidebartitle}}</h3>
+                 <p>{{sidebarintroduce}}</p>
+             </div>
+         </header>
+        <div class="container container-content">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="sidebar-content">
+                        <ul class="sidebar-list">
+                            <li class="sidebar-item" ng-repeat="items in sidebarItem">
+                                <span>{{items.sidebarName}}</span>
+                                <ul class="sidebar-list" ng-repeat="item in items.itemName">
+                                    <li class="sidebar-item"><a href="" ui-sref="{{item.uiSref}}" ui-sref-active="active" ng-class="{'active':item.uiSref == this}">{{item.barName}}</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-9">
+                    <div ui-view></div>
+                </div>
+            </div>
+        </div>
+ </div>
+
+ <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+ <script src="../node_modules/angular/angular.min.js"></script>
+ <script src="../node_modules/@uirouter/angularjs/release/angular-ui-router.min.js"></script>
+ <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+ <script src="../assets/js/marked/highlight.min.js"></script>
+ <script src="../assets/js/marked/marked.min.js"></script>
+ <script src="../assets/js/main.js"></script>
+ <script src="../assets/layer/layer.js" ></script>
+ <!--<script src="../script/suspend.js"></script>-->
+ <!--<script src="../script/carousel.js"></script>-->
+ <!--<script src="../script/form_verify.js"></script>-->
+ <!--<script src="../script/modal.js"></script>-->
+ <script src="../dist/js/all.js"></script>
+</body>
+</html>

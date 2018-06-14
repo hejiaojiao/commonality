@@ -1,0 +1,45 @@
+.required{
+  color: #c82314;
+  vertical-align: middle;
+}
+/*form col-fix 1111sss ssfddffdsdf*/
+$col-width:50;
+.fix{
+  .col{
+    display: inline-block;
+  }
+  @for $i from 1 through 24 {
+    .col-fix-#{$i} { width:$col-width * $i+px; };
+    .col-fix-offset-#{$i} { margin-left:$col-width * $i+px; };
+  }
+}
+.form-horizontal{
+  .form-group{
+    .control-label{
+      font-weight: 500;
+      vertical-align:top;
+    }
+  }
+}
+.has-error{
+  position: relative;
+  .error-text{
+    position: absolute;
+    background-color: #c82314;
+    color: #fff;
+    padding: 2px 6px;
+    border-radius: 8px;
+    top: -30px;
+    font-size: 12px;
+    box-shadow:0 2px 2px 0 #807f7f;
+    &:after{
+      content: '';
+      position: absolute;
+      border-right: transparent solid 5px;
+      border-left: transparent solid 5px;
+      border-top: #c82314 solid 6px;
+      bottom: -6px;
+      left: 10px;
+    }
+  }
+}

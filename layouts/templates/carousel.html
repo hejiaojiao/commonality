@@ -1,0 +1,34 @@
+<div class="row">
+    <div class="col-sm-12">
+        <h3 class="no-margin border-bottom">轮播</h3>
+    </div>
+    <div class="col-sm-12 margin-top-10">
+        <carousel open-way="click">
+            <img src="../assets/images/05.jpg" alt="">
+            <img src="../assets/images/06.jpg" alt="">
+            <img src="../assets/images/07.jpg" alt="">
+            <img src="../assets/images/08.jpg" alt="">
+        </carousel>
+    </div>
+    <div class="col-sm-12 margin-top-10">
+        <h3 class="no-margin border-bottom">列表滚动</h3>
+    </div>
+    <div class="col-sm-12 margin-top-10" ng-controller="listRollController">
+        <list-roll>
+            <table class="flow-list-content clearfix">
+                <tbody>
+                <tr>
+                    <td class="flow-list-group text-row-2" ng-repeat="list in roll_list"  on-finish-render-filters>
+                        <div class="text-wrap">
+                            <strong class="flow-title">{{list.groupName}}</strong>
+                            <div class="text-box">
+                                <a href="" class="theme-color">{{list.name}}</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </list-roll>
+    </div>
+</div>

@@ -1,0 +1,59 @@
+.flotation-box{
+  position: absolute;
+  width: 200px;
+  height: 60px;
+  background-color: #fff3e7;
+  border: solid 1px #ff9841;
+  padding: 10px;
+  top: 0;
+  left: 100%;
+}
+/**/
+.pos-alert{
+  position: relative;
+  .alert-box{
+    padding:10px 25px;
+    background-color: #fdfaf2;
+    border: solid 1px #e2694d;
+    position: absolute;
+    top: 45px;
+    left: 0;
+    z-index: 99;
+    font-size: 12px;
+    p{
+      margin-bottom: 0;
+    }
+    &.directionTop{
+      bottom: 45px;
+      top: inherit;
+      left: 0;
+      &:after{
+        left: 10px;
+        top: inherit;
+        bottom: -8px;
+        border-top: #e2694d solid 8px;
+        border-bottom:0;
+      }
+    }
+    &:after{
+      content: '';
+      position: absolute;
+      left: 10px;
+      top: -8px;
+      border-bottom: #e2694d solid 8px;
+      border-right: transparent solid 5px;
+      border-left: transparent solid 5px;
+    }
+  }
+  .close-icon{
+    position: absolute;
+    right: 0;
+    top: 5px;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    color: #e23f2a;
+    font-size: 14px;
+  }
+}

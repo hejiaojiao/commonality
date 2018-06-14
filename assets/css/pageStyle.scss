@@ -1,0 +1,150 @@
+/*doc public module css*/
+$theme-color:#26ABE2;
+$theme-darken:darken($theme-color,25%);
+$border-gray:#ccc;
+
+*{
+  padding: 0;
+  margin: 0;
+}
+html,body{
+  font-family: "microsoft yahei";
+}
+ul{
+  list-style: none;
+}
+.clearfix{
+  clear: both;
+  overflow: hidden;
+}
+.no-margin{
+  margin: 0;
+}
+.margin-top-10{
+  margin-top:10px;
+}
+.border-bottom{
+  border-bottom: solid 1px $border-gray;
+  padding-bottom: 10px;
+}
+/*animation*/
+
+@mixin transition($transition...){
+  -webkit-transition:$transition;
+  -moz-transition:$transition;
+  transition:$transition;
+  -o-transition:$transition;
+}
+@mixin transform($transform...){
+  -webkit-transform:$transform;
+  -moz-transform:$transform;
+  transform:$transform;
+  -o-transform:$transform;
+}
+@mixin animation($animation...){
+  -webkit-animation:$animation;
+  -moz-animation:$animation;
+  animation:$animation;
+  -o-animation:$animation;
+}
+@keyframes myfirst
+{
+  0%  {margin-top:-10px;}
+  25%  {margin-top:0;}
+  50%  {margin-top:-5px;}
+  100% {margin-top:0;}
+}
+/*example*/
+.example-content{
+  border: solid 1px $border-gray;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  .example{
+    padding: 10px 0 0 10px;
+    >p{
+      margin-bottom: 5px;
+      color: #8d8d8d;
+    }
+  }
+}
+/*pre*/
+pre{
+  padding: 10px 0;
+  margin-bottom: 0;
+  border: 0;
+  border-top: solid 1px $border-gray;
+  border-radius: 0;
+}
+.hljs-string, .hljs-tag .hljs-value, .hljs-doctag, .tex .hljs-formula{
+  color: #d14;
+}
+.hljs-keyword, .css .rule .hljs-keyword, .hljs-winutils, .nginx .hljs-title, .hljs-subst, .hljs-request, .hljs-status{
+  color: #333;
+  font-weight: bold;
+}
+/*header*/
+.pages-content{
+  nav{
+    height: 70px;
+    line-height: 70px;
+    background-color: $theme-darken;
+    color: #fff;
+    .header-title{
+      font-size: 26px;
+    }
+    .header-list{
+      padding-left: 50px;
+      .header-list-item{
+        float: left;
+        padding: 0 20px;
+        font-size: 16px;
+        cursor: pointer;
+        //@include transition(myfirst 0.2s);
+        &:hover{
+          //@include transform(translate(0,-10px));
+          @include animation(myfirst 0.5s);
+        }
+        >a{
+          color: #fff;
+          text-decoration: none;
+        }
+        &.active{
+          font-weight: bold;
+        }
+      }
+    }
+  }
+  header{
+    background-color: $theme-color;
+    padding: 20px 0;
+    color: #fff;
+  }
+  .container-content{
+    padding-top: 30px;
+    position: relative;
+  }
+}
+/*sidebar*/
+.sidebar-content{
+  background-color: #f4f4f4;
+  >.sidebar-list{
+    >.sidebar-item{
+      padding:10px 0 0 15px;
+      color: #000;
+      >.sidebar-list{
+        >.sidebar-item{
+          padding:5px 10px;
+          >a{
+            text-decoration: none;
+            color: #777676;
+            &.active{
+              color: $theme-color;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+

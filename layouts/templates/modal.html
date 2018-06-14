@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="col-sm-12">
+        <h3 class="no-margin border-bottom">弹窗</h3>
+    </div>
+    <div class="col-sm-12 margin-top-10" ng-controller="modalController">
+        <button class="btn btn-primary" type="button" ng-click="openClick()">Open me!</button>
+        <div class="modal-wrap" ng-if="modaltrue">
+            <div class="modal-content">
+                <div class="modal-header">标题</div>
+                <div class="modal-body">内容</div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="button">OK</button>
+                    <button class="btn btn-warning" type="button" ng-click="CancelClick()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
