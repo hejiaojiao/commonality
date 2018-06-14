@@ -22,6 +22,6 @@ gulp.task('js', function() {
 });
 
 gulp.task('watch',function () {
-   gulp.watch('scss/*.css',['sass']);
-   gulp.watch('/script/*.js',['js']);
+   gulp.watch('./scss/**/*.css',['sass']);
+   gulp.watch('./script/**/*.js',['js']);
 });
