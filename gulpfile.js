@@ -1,12 +1,15 @@
+'use strict';
 var gulp = require('gulp'),
-    concat = require('gulp-concat'),
-    minify = require('gulp-minify-css'),
-    uglify = require('gulp-uglify'),
-    ngAnnotate = require('gulp-ng-annotate'),
-    watch = require('gulp-watch');
+     //sass = require("gulp-sass"),
+     concat = require('gulp-concat'),
+     minify = require('gulp-minify-css'),
+     uglify = require('gulp-uglify'),
+     ngAnnotate = require('gulp-ng-annotate'),
+     watch = require('gulp-watch');
 
 gulp.task('sass', function() {
-     gulp.src("scss/*.css")
+     return gulp.src("scss/*.css")
+        //.pipe(sass())
         .pipe(minify())
         .pipe(concat("all.css"))
         .pipe(gulp.dest('dist/css/'))
@@ -22,6 +25,6 @@ gulp.task('js', function() {
 });
 
 gulp.task('watch',function () {
-   gulp.watch('./scss/**/*.css',['sass']);
-   gulp.watch('./script/**/*.js',['js']);
+   gulp.watch('./scss/*.css',['sass']);
+   gulp.watch('./script/*.js',['js']);
 });

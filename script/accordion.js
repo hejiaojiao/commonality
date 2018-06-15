@@ -32,7 +32,6 @@ angular.module('commonalityApp')
     }
 })
 .directive('uiCollapse', ['$animate', '$q', '$parse', '$injector', function($animate, $q, $parse, $injector) {
-    var $animateCss = $injector.has('$animateCss') ? $injector.get('$animateCss') : null;
     return {
         link:function(scope, element, attrs){
             var expandingExpr = $parse(attrs.expanding),
@@ -41,15 +40,14 @@ angular.module('commonalityApp')
             function init() {
                 css = {height: ''};
                 cssTo = {height: '0'};
-
                 scope.toggleOpen = function(){
                     element.hasClass('in') == false?element.addClass('in'):element.removeClass('in')
                     .addClass('collapse')
                     .css(css);
-                }
+                };
             }
             init();
-            console.log(!scope.$eval(attrs.uibCollapse))
+
         }
     };
 }]);
