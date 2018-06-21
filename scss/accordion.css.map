@@ -1,7 +1,7 @@
 {
 "version": 3,
-"mappings": "",
-"sources": [],
+"mappings": "AAAA,SAAS;EACP,MAAM,EAAE,CAAC;EACT,uBAAM;IACJ,OAAO,EAAE,OAAO;IAChB,QAAQ,EAAE,MAAM;IAChB,UAAU,EAAE,OAAO",
+"sources": ["accordion.scss"],
 "names": [],
 "file": "accordion.css"
 }

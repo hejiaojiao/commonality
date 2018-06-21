@@ -2,17 +2,42 @@
  * Created by hejiao on 2018/6/13.
  */
 angular.module('commonalityApp')
-.constant('uibAccordionConfig', {
+.constant('uiAccordionConfig', {
     closeOthers: true
 })
+.controller('accordionDataController',['$scope','$http',function($scope,$http){
+        $scope.groups = [
+            {'headingName':'11111111111','headingMsg':'This content is straight in the template1'},
+            {'headingName':'22222222222','headingMsg':'This content is straight in the template2'}
+        ];
+        $scope.oneAtATime = true;
+        /*接口调用*/
+        $http.get('http://10.6.23.13:1088/applogs/api/logs?&page=20&size=200')
+            .then(function success(res){
+                if(res.status = 200){
+                   $scope.dataList = res.data.content;
+                    console.log($scope.dataList)
+
+                }else{
+                    console.log(res.statusText)
+                }
+            },function error(){
+
+            })
+    }])
+.controller('UiAccordionController',['$scope','$attrs','uiAccordionConfig',function($scope,$attrs,uiAccordionConfig){
+    console.log(uiAccordionConfig.closeOthers)
+}])
 .directive('uiAccordion',function(){
     return{
+        controller:'UiAccordionController',
         transclude: true,
         template:'<div class="panel-group" ng-transclude></div>'
     }
 })
 .directive('uiAccordionGroup',function(){
     return{
+        require: '^uiAccordion',
         transclude: true,
         restrict: 'A',
         template:'<div class="panel-heading">' +
@@ -27,27 +52,38 @@ angular.module('commonalityApp')
             heading: '@'
         },
         link:function(scope, element, attrs){
-
+            var panel_body = element[0].children[1].children[0];
+            console.log(element)
         }
     }
 })
-.directive('uiCollapse', ['$animate', '$q', '$parse', '$injector', function($animate, $q, $parse, $injector) {
+.directive('uiCollapse', ['$timeout',function($timeout) {
     return {
         link:function(scope, element, attrs){
-            var expandingExpr = $parse(attrs.expanding),
-                css = {},
-                cssTo = {};
-            function init() {
-                css = {height: ''};
-                cssTo = {height: '0'};
+            function collapseFun(){
+                var css = {'height':''},
+                    pbody_height = element[0].firstChild.offsetHeight;
                 scope.toggleOpen = function(){
-                    element.hasClass('in') == false?element.addClass('in'):element.removeClass('in')
-                    .addClass('collapse')
-                    .css(css);
+                    element.hasClass('in') == false?element.addClass('in'):element.removeClass('in');
+                    element.hasClass('in')==true?element.css('height',pbody_height) :element.css(css);
                 };
             }
-            init();
-
+            scope.$on('ngRepeatFinished', function () {
+                collapseFun();
+            });
+            collapseFun();
         }
     };
-}]);
+}])
+.directive('finishRenderFilters', function ($timeout) {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attr) {
+            if (scope.$last === true) {
+                $timeout(function () {
+                    scope.$emit('ngRepeatFinished');
+                });
+            }
+        }
+    };
+});
