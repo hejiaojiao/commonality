@@ -39,8 +39,23 @@ app.config(["$httpProvider", function($httpProvider) {
 
 formValidController.$injector = ['$scope','$http'];
 function formValidController($scope,$http) {
+    /*接口调用*/
+        $http.get('http://10.6.23.13:1088/applogs/api/logs?page=10&size=200')
+        .then(function success(res){
+            $scope.conditionList = res.data;
+            $scope.dataList = res.data.content;
+            console.log(res.data);
+            $scope.previousPageNumber = function(){
 
-}
+            };
+            $scope.nextPageNumber = function(){
+
+            }
+        },function error(){
+            $scope.loadErrorMsg = '加载失败，请重试！';
+        });
+    }
+
 
 
 

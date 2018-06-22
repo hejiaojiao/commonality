@@ -11,19 +11,6 @@ angular.module('commonalityApp')
             {'headingName':'22222222222','headingMsg':'This content is straight in the template2'}
         ];
         $scope.oneAtATime = true;
-        /*接口调用*/
-        $http.get('http://10.6.23.13:1088/applogs/api/logs?&page=20&size=200')
-            .then(function success(res){
-                if(res.status = 200){
-                   $scope.dataList = res.data.content;
-                    console.log($scope.dataList)
-
-                }else{
-                    console.log(res.statusText)
-                }
-            },function error(){
-
-            })
     }])
 .controller('UiAccordionController',['$scope','$attrs','uiAccordionConfig',function($scope,$attrs,uiAccordionConfig){
     console.log(uiAccordionConfig.closeOthers)
@@ -52,8 +39,7 @@ angular.module('commonalityApp')
             heading: '@'
         },
         link:function(scope, element, attrs){
-            var panel_body = element[0].children[1].children[0];
-            console.log(element)
+
         }
     }
 })

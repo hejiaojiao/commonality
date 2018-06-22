@@ -5,36 +5,7 @@
     <div class="col-sm-12 margin-top-10" ng-controller="accordionDataController">
         <ui-accordion close-others="oneAtATime">
             <div ui-accordion-group class="panel panel-default" ng-repeat="head in groups"  heading="{{head.headingName}}">
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>序号</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr ng-repeat="item in dataList" finish-render-filters>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    </tbody>
-                </table>
+                {{head.headingMsg}}
             </div>
         </ui-accordion>
     </div>

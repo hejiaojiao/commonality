@@ -33,11 +33,6 @@ angular.module('commonalityApp',[ 'ui.router'])
                 url: '/carousel',
                 templateUrl: 'templates/carousel.html'
             })
-            /*表单验证*/
-            .state('form_verify', {
-                url: '/form_verify',
-                templateUrl: 'templates/form_verify.html'
-            })
             /*Accordion*/
             .state('modal', {
                 url: '/modal',
@@ -47,6 +42,11 @@ angular.module('commonalityApp',[ 'ui.router'])
             .state('accordion', {
                 url: '/accordion',
                 templateUrl: 'templates/accordion.html'
+            })
+            /*数据交互*/
+            .state('form_verify', {
+                url: '/form_verify',
+                templateUrl: 'templates/form_verify.html'
             });
          $urlRouterProvider.otherwise('button')
         }
@@ -84,9 +84,14 @@ angular.module('commonalityApp',[ 'ui.router'])
                         itemName:[
                             {barName:'悬浮提示',uiSref:'suspend'},
                             {barName:'轮播',uiSref:'carousel'},
-                            {barName:'表单验证',uiSref:'form_verify'},
                             {barName:'弹窗',uiSref:'modal'},
                             {barName:'手风琴',uiSref:'accordion'}
+                        ]
+                    },
+                    {
+                        sidebarName:'数据交互',
+                        itemName:[
+                            {barName:'数据交互',uiSref:'form_verify'}
                         ]
                     }
                 ];
