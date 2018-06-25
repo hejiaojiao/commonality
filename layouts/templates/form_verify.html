@@ -14,10 +14,10 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-show="loadErrorMsg">
-                <td colspan="100"><h4><strong>{{loadErrorMsg}}</strong></h4></td>
+            <tr ng-if="loadErrorMsgb">
+                <td colspan="100"><div class="text-center"><strong>{{loadErrorMsg}}</strong></div></td>
             </tr>
-            <tr ng-repeat="item in dataList | limitTo: 20" finish-render-filters>
+            <tr ng-repeat="item in dataList" finish-render-filters>
                 <td class="text-center">{{$index + 1}}</td>
                 <td>{{item.customer.customerCode}}</td>
                 <td>{{item.customer.customerName}}</td>
@@ -26,10 +26,18 @@
             </tr>
             </tbody>
         </table>
-        <div class="btn-group pull-right" role="group" aria-label="...">
-            <button type="button" class="btn btn-default" ng-click="previousPageNumber()">上一页</button>
-            <button type="button" class="btn btn-default">共{{conditionList.size}}条&nbsp;/&nbsp;共{{conditionList.number}}页</button>
-            <button type="button" class="btn btn-default" ng-click="nextPageNumber()">下一页</button>
+        <div class="pull-right">
+           <div class="btn-group" role="group" aria-label="...">
+               <button type="button" class="btn btn-default" ng-click="previousPageNumber()">上一页</button>
+               <button type="button" class="btn btn-default">{{number}}&nbsp;/&nbsp;{{conditionList.totalPages}}页&nbsp;/&nbsp;共{{conditionList.totalElements}}条</button>
+               <button type="button" class="btn btn-default" ng-click="nextPageNumber()">下一页</button>
+           </div>
+            <div class="input-inline">每页
+                <select name="" id="" class="form-control input-inline input-mini">
+                    <option value="" >10</option>
+                </select>
+                条数据
+            </div>
         </div>
     </div>
 </div>

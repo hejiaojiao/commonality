@@ -37,23 +37,30 @@ app.config(["$httpProvider", function($httpProvider) {
     $httpProvider.interceptors.push('httpInterceptor');
 }]);
 
-formValidController.$injector = ['$scope','$http'];
-function formValidController($scope,$http) {
+formValidController.$injector = ['$scope','$http','$filter'];
+function formValidController($scope,$http,$filter) {
     /*接口调用*/
-        $http.get('http://10.6.23.13:1088/applogs/api/logs?page=10&size=200')
-        .then(function success(res){
-            $scope.conditionList = res.data;
-            $scope.dataList = res.data.content;
-            console.log(res.data);
-            $scope.previousPageNumber = function(){
+    $http.get('http://10.6.23.13:1088/applogs/api/logs?page=0&size=10').then(function success(data){
+            if(data.status == 200){
 
-            };
-            $scope.nextPageNumber = function(){
+                $scope.conditionList = data.data;
+                $scope.dataList = data.data.content;
+                $scope.number = $scope.conditionList.number +1;
+                console.log($scope.conditionList);
+                $scope.previousPageNumber = function(){
 
+                };
+                $scope.nextPageNumber = function(){
+
+                }
+            }else{
+                $scope.loadErrorMsgb = true;
+                $scope.loadErrorMsg ='数据加载失败！'
             }
-        },function error(){
-            $scope.loadErrorMsg = '加载失败，请重试！';
-        });
+            },function error(){
+            $scope.loadErrorMsgb = true;
+            $scope.loadErrorMsg ='数据加载失败！'
+     });
     }
 
 

@@ -126,4 +126,11 @@
       bottom: -6px;
       left: 10px; }
 
+.input-inline {
+  display: inline-block; }
+
+.input-mini {
+  padding: 2px 4px;
+  width: 50px; }
+
 /*# sourceMappingURL=form.css.map */
