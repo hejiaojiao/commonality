@@ -42,16 +42,21 @@ function formValidController($scope,$http,$filter) {
     /*接口调用*/
     $http.get('http://10.6.23.13:1088/applogs/api/logs?page=0&size=10').then(function success(data){
             if(data.status == 200){
-
-                $scope.conditionList = data.data;
-                $scope.dataList = data.data.content;
-                $scope.number = $scope.conditionList.number +1;
+                $scope.query = function(){
+                    $scope.conditionList = data.data;
+                    $scope.dataList = data.data.content;
+                    $scope.number = $scope.conditionList.number +1;
+                };
+                $scope.query();
                 console.log($scope.conditionList);
                 $scope.previousPageNumber = function(){
+                    $scope.number--;
+                    if($scope.number<=0){
 
+                    }
                 };
                 $scope.nextPageNumber = function(){
-
+                    $scope.number++;
                 }
             }else{
                 $scope.loadErrorMsgb = true;

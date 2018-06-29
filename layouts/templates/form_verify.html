@@ -17,7 +17,7 @@
             <tr ng-if="loadErrorMsgb">
                 <td colspan="100"><div class="text-center"><strong>{{loadErrorMsg}}</strong></div></td>
             </tr>
-            <tr ng-repeat="item in dataList" finish-render-filters>
+            <tr ng-repeat="item in dataList">
                 <td class="text-center">{{$index + 1}}</td>
                 <td>{{item.customer.customerCode}}</td>
                 <td>{{item.customer.customerName}}</td>

@@ -2,6 +2,15 @@
  * Created by 何娇  on 2018/4/27.
  */
 angular.module('commonalityApp')
+
+.controller('suspendController',['$scope','$http','$filter',function($scope,$http,$filter){
+    $http.get("http://122.114.75.166:8082/app/iptv/findChannels?tag=88888888")
+        .then(function success(res) {
+            $scope.roll_list = res.data.data;
+        },function error() {
+
+        });
+}])
 /*悬浮框*/
 .directive('suspendBox',suspendBox);
 suspendBox.$injector = ['$interval', '$document'];
@@ -17,22 +26,28 @@ function suspendBox($interval,$document){
         scope:{
             openWay:'@'
         },
-        link:link
+        link:link,
+        controller:controller
     };
-    function link(scope,elme,attr){
-        var elm = angular.element(document),
-            btn_box = elm.find('.btn'),
-            alert_box = elm.find('.alert-box'),
-            close_icon = elm.find('.close-icon');
-        alert_box.css({
-            'display':'none'
-        });
+    function controller(){
+
+    }
+    function link(scope,eleme,attr){
+        var element = angular.element(document),
+             btn_box = element.find(".btn"),
+            alert_box = element.find(".alert-box"),
+            close_icon = element.find(".close-icon");
+            alert_box.css({
+                'display':'none'
+            });
         /*获取宽高度和位置*/
-        function getlocation(){
-            var clientH = elme[0].lastChild.lastChild.clientHeight,
-                offsetTop = elme[0].offsetTop;
+        function getLocation(){
+            var clientH = eleme[0].lastChild.clientHeight,
+                offsetTop = eleme[0].offsetTop,
+                offsetLeft = eleme[0].offsetLeft;
+            console.log(offsetLeft);
             if(offsetTop>=clientH){
-                alert_box.addClass('directionTop')
+                alert_box.addClass('topLeft')
             }else{
 
             }
@@ -43,7 +58,7 @@ function suspendBox($interval,$document){
                 alert_box.css({
                     'display':'block'
                 });
-                getlocation();
+                getLocation();
             });
             btn_box.on('mouseout',function(){
                 alert_box.css({
@@ -59,7 +74,7 @@ function suspendBox($interval,$document){
                 alert_box.css({
                     'display':'block'
                 });
-                getlocation();
+                getLocation();
             });
             close_icon.on('click',function(){
                 alert_box.css({

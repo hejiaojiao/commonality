@@ -6,9 +6,10 @@ angular.module('commonalityApp',[ 'ui.router'])
     .controller('homeController',homeController)
     .directive('hLight',hLight);
 
-    config.$injector = ['$stateProvider','$urlRouterProvider']
-     function config($stateProvider, $urlRouterProvider){
-        $stateProvider
+    config.$injector = ['$stateProvider','$urlRouterProvider','$locationProvider'];
+     function config($stateProvider, $urlRouterProvider,$locationProvider){
+         $locationProvider.hashPrefix('');
+         $stateProvider
             .state('home', {
                 url: '/home',
                 templateUrl: 'layouts/home.html'
@@ -87,7 +88,15 @@ angular.module('commonalityApp',[ 'ui.router'])
                             {barName:'弹窗',uiSref:'modal'},
                             {barName:'手风琴',uiSref:'accordion'}
                         ]
-                    },
+                    }
+                ];
+            };
+            $scope.otherClick = function () {
+                $state.go("form_verify");
+                $scope.sidebartitle = 'JavaScript 插件';
+                $scope.sidebarintroduce = 'jQuery 插件为 Bootstrap 的组件赋予了“生命”。可以简单地一次性引入所有插件，或者逐个引入到你的页面中。';
+                $scope.isClick = 3;
+                $scope.sidebarItem = [
                     {
                         sidebarName:'数据交互',
                         itemName:[
@@ -97,10 +106,12 @@ angular.module('commonalityApp',[ 'ui.router'])
                 ];
             };
             /*当前是哪个界面就调用哪个方法*/
-            if(window.location.hash == '#/suspend' || window.location.hash == '#/carousel'|| window.location.hash == '#/form_verify'|| window.location.hash == '#/modal'|| window.location.hash == '#/accordion'){
-                $scope.scriptClick();
-            }else{
+            if(window.location.hash == '#/button' || window.location.hash == '#/form'){
                 $scope.cssClick();
+            }else if( window.location.hash == '#/form_verify'){
+                $scope.otherClick();
+            }else{
+                $scope.scriptClick();
             }
 
         }

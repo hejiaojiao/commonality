@@ -1,3 +1,5 @@
+$warning-color: #fff;
+$warning-darken:darken($warning-color,18%);
 .flotation-box{
   position: absolute;
   width: 200px;
@@ -12,48 +14,63 @@
 .pos-alert{
   position: relative;
   .alert-box{
-    padding:10px 25px;
-    background-color: #fdfaf2;
-    border: solid 1px #e2694d;
+    padding:5px 20px;
+    background-color: $warning-color;
+    border: solid 1px $warning-darken;
     position: absolute;
     top: 45px;
     left: 0;
     z-index: 99;
     font-size: 12px;
+    border-radius: 6px;
+    box-shadow: 0 4px 15px -2px $warning-darken;
     p{
       margin-bottom: 0;
     }
-    &.directionTop{
+    /*Ä¬ÈÏÏÂ×ó*/
+    &:after,&:before{
+      content: '';
+      position: absolute;
+      left: 28px;
+      border-right: transparent solid 8px;
+      border-left: transparent solid 8px;
+    }
+    &:after{
+      border-bottom: $warning-color solid 13px;
+      top: -11px;
+    }
+    &:before{
+      border-bottom: $warning-darken solid 12px;
+      top: -12px;
+    }
+    /*ÉÏ×ó*/
+    &.topLeft{
       bottom: 45px;
       top: inherit;
       left: 0;
-      &:after{
-        left: 10px;
+      &:after,&:before{
         top: inherit;
-        bottom: -8px;
-        border-top: #e2694d solid 8px;
         border-bottom:0;
       }
-    }
-    &:after{
-      content: '';
-      position: absolute;
-      left: 10px;
-      top: -8px;
-      border-bottom: #e2694d solid 8px;
-      border-right: transparent solid 5px;
-      border-left: transparent solid 5px;
+      &:after{
+        border-top: $warning-color solid 13px;
+        bottom: -11px;
+      }
+      &:before{
+        border-top: $warning-darken solid 12px;
+        bottom: -12px;
+      }
     }
   }
   .close-icon{
     position: absolute;
-    right: 0;
+    right: 2px;
     top: 5px;
     cursor: pointer;
     width: 20px;
     height: 20px;
     text-align: center;
-    color: #e23f2a;
+    color: $warning-darken;
     font-size: 14px;
   }
 }

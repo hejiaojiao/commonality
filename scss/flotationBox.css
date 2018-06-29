@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .flotation-box {
   position: absolute;
   width: 200px;
@@ -12,43 +13,54 @@
 .pos-alert {
   position: relative; }
   .pos-alert .alert-box {
-    padding: 10px 25px;
-    background-color: #fdfaf2;
-    border: solid 1px #e2694d;
+    padding: 5px 20px;
+    background-color: #fff;
+    border: solid 1px #d1d1d1;
     position: absolute;
     top: 45px;
     left: 0;
     z-index: 99;
-    font-size: 12px; }
+    font-size: 12px;
+    border-radius: 6px;
+    box-shadow: 0 4px 15px -2px #d1d1d1;
+    /*默认下左*/
+    /*上左*/ }
     .pos-alert .alert-box p {
       margin-bottom: 0; }
-    .pos-alert .alert-box.directionTop {
+    .pos-alert .alert-box:after, .pos-alert .alert-box:before {
+      content: '';
+      position: absolute;
+      left: 28px;
+      border-right: transparent solid 8px;
+      border-left: transparent solid 8px; }
+    .pos-alert .alert-box:after {
+      border-bottom: #fff solid 13px;
+      top: -11px; }
+    .pos-alert .alert-box:before {
+      border-bottom: #d1d1d1 solid 12px;
+      top: -12px; }
+    .pos-alert .alert-box.topLeft {
       bottom: 45px;
       top: inherit;
       left: 0; }
-      .pos-alert .alert-box.directionTop:after {
-        left: 10px;
+      .pos-alert .alert-box.topLeft:after, .pos-alert .alert-box.topLeft:before {
         top: inherit;
-        bottom: -8px;
-        border-top: #e2694d solid 8px;
         border-bottom: 0; }
-    .pos-alert .alert-box:after {
-      content: '';
-      position: absolute;
-      left: 10px;
-      top: -8px;
-      border-bottom: #e2694d solid 8px;
-      border-right: transparent solid 5px;
-      border-left: transparent solid 5px; }
+      .pos-alert .alert-box.topLeft:after {
+        border-top: #fff solid 13px;
+        bottom: -11px; }
+      .pos-alert .alert-box.topLeft:before {
+        border-top: #d1d1d1 solid 12px;
+        bottom: -12px; }
   .pos-alert .close-icon {
     position: absolute;
-    right: 0;
+    right: 2px;
     top: 5px;
     cursor: pointer;
     width: 20px;
     height: 20px;
     text-align: center;
-    color: #e23f2a;
+    color: #d1d1d1;
     font-size: 14px; }
 
 /*# sourceMappingURL=flotationBox.css.map */
