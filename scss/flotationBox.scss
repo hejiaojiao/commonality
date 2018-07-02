@@ -11,7 +11,7 @@ $warning-darken:darken($warning-color,18%);
   left: 100%;
 }
 /**/
-.pos-alert{
+.alert-wrap{
   position: relative;
   .alert-box{
     padding:5px 20px;
@@ -43,11 +43,21 @@ $warning-darken:darken($warning-color,18%);
       border-bottom: $warning-darken solid 12px;
       top: -12px;
     }
-    /*上左*/
+    /*上左、上右*/
     &.topLeft{
+      left: 0;
+    }
+    &.topRight{
+      right:  -80px;
+      left: inherit;
+      &:after,&:before{
+        right: 28px;
+        left: inherit;
+      }
+    }
+    &.topLeft,&.topRight{
       bottom: 45px;
       top: inherit;
-      left: 0;
       &:after,&:before{
         top: inherit;
         border-bottom:0;
@@ -59,6 +69,16 @@ $warning-darken:darken($warning-color,18%);
       &:before{
         border-top: $warning-darken solid 12px;
         bottom: -12px;
+      }
+    }
+    /*下右*/
+    &.bottomRight{
+      top: 45px;
+      right: -80px;
+      left: inherit;
+      &:after,&:before{
+        right: 28px;
+        left: inherit;
       }
     }
   }

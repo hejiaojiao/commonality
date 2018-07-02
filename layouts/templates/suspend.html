@@ -3,16 +3,25 @@
         <h3 class="no-margin border-bottom">悬浮提示</h3>
     </div>
     <div class="col-sm-12 margin-top-10" ng-controller="suspendController">
-        <suspend-box open-way="click">
-            <p ng-repeat="item in roll_list | limitTo:3">{{$index+1}}：{{item.groupId}}</p>
+        <suspend-box class="alert-wrap" open-way="click">
+            <alert-icon>
+                <!--<i class="fa fa-question-circle btn"></i>-->
+                <button class="btn btn-warning" type="button">悬浮提示</button>
+            </alert-icon>
+            <alert-content>
+                <p ng-repeat="item in roll_list | limitTo:5">{{$index+1}}:{{item.groupId}}</p>
+            </alert-content>
         </suspend-box>
-        <h3 class="no-margin">...</h3>
-        <h3 class="no-margin">...</h3>
-        <h3 class="no-margin">...</h3>
-        <h3 class="no-margin">...</h3>
-        <h3 class="no-margin">...</h3>
-        <suspend-box open-way="click">
-            <p ng-repeat="item in roll_list | limitTo:3">{{$index+1}}：{{item.groupId}}</p>
+    </div>
+    <div class="col-sm-12 margin-top-10">
+        <suspend-box class="alert-wrap" open-way="click">
+            <alert-icon>
+                <!--<i class="fa fa-question-circle btn"></i>-->
+                <button class="btn btn-warning" type="button">悬浮提示</button>
+            </alert-icon>
+            <alert-content>
+                <p>提示信息提示信息提示信息提示信息提示信息</p>
+            </alert-content>
         </suspend-box>
     </div>
 </div>

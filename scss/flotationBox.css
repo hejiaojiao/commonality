@@ -10,9 +10,9 @@
   left: 100%; }
 
 /**/
-.pos-alert {
+.alert-wrap {
   position: relative; }
-  .pos-alert .alert-box {
+  .alert-wrap .alert-box {
     padding: 5px 20px;
     background-color: #fff;
     border: solid 1px #d1d1d1;
@@ -24,35 +24,50 @@
     border-radius: 6px;
     box-shadow: 0 4px 15px -2px #d1d1d1;
     /*默认下左*/
-    /*上左*/ }
-    .pos-alert .alert-box p {
+    /*上左、上右*/
+    /*下右*/ }
+    .alert-wrap .alert-box p {
       margin-bottom: 0; }
-    .pos-alert .alert-box:after, .pos-alert .alert-box:before {
+    .alert-wrap .alert-box:after, .alert-wrap .alert-box:before {
       content: '';
       position: absolute;
       left: 28px;
       border-right: transparent solid 8px;
       border-left: transparent solid 8px; }
-    .pos-alert .alert-box:after {
+    .alert-wrap .alert-box:after {
       border-bottom: #fff solid 13px;
       top: -11px; }
-    .pos-alert .alert-box:before {
+    .alert-wrap .alert-box:before {
       border-bottom: #d1d1d1 solid 12px;
       top: -12px; }
-    .pos-alert .alert-box.topLeft {
-      bottom: 45px;
-      top: inherit;
+    .alert-wrap .alert-box.topLeft {
       left: 0; }
-      .pos-alert .alert-box.topLeft:after, .pos-alert .alert-box.topLeft:before {
+    .alert-wrap .alert-box.topRight {
+      right: -80px;
+      left: inherit; }
+      .alert-wrap .alert-box.topRight:after, .alert-wrap .alert-box.topRight:before {
+        right: 28px;
+        left: inherit; }
+    .alert-wrap .alert-box.topLeft, .alert-wrap .alert-box.topRight {
+      bottom: 45px;
+      top: inherit; }
+      .alert-wrap .alert-box.topLeft:after, .alert-wrap .alert-box.topLeft:before, .alert-wrap .alert-box.topRight:after, .alert-wrap .alert-box.topRight:before {
         top: inherit;
         border-bottom: 0; }
-      .pos-alert .alert-box.topLeft:after {
+      .alert-wrap .alert-box.topLeft:after, .alert-wrap .alert-box.topRight:after {
         border-top: #fff solid 13px;
         bottom: -11px; }
-      .pos-alert .alert-box.topLeft:before {
+      .alert-wrap .alert-box.topLeft:before, .alert-wrap .alert-box.topRight:before {
         border-top: #d1d1d1 solid 12px;
         bottom: -12px; }
-  .pos-alert .close-icon {
+    .alert-wrap .alert-box.bottomRight {
+      top: 45px;
+      right: -80px;
+      left: inherit; }
+      .alert-wrap .alert-box.bottomRight:after, .alert-wrap .alert-box.bottomRight:before {
+        right: 28px;
+        left: inherit; }
+  .alert-wrap .close-icon {
     position: absolute;
     right: 2px;
     top: 5px;
