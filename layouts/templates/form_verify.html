@@ -28,9 +28,11 @@
         </table>
         <div class="pull-right">
            <div class="btn-group" role="group" aria-label="...">
-               <button type="button" class="btn btn-default" ng-click="previousPageNumber()">上一页</button>
-               <button type="button" class="btn btn-default">{{number}}&nbsp;/&nbsp;{{conditionList.totalPages}}页&nbsp;/&nbsp;共{{conditionList.totalElements}}条</button>
-               <button type="button" class="btn btn-default" ng-click="nextPageNumber()">下一页</button>
+               <button type="button" class="btn btn-default" ng-disabled="conditionList.first == true" ng-click="homePageClick()">首页</button>
+               <button type="button" class="btn btn-default" ng-disabled="conditionList.number == 0" ng-click="previousPageNumber()">上一页</button>
+               <button type="button" class="btn btn-default">{{number}}&nbsp;/&nbsp;{{conditionList.totalPages+1}}页&nbsp;/&nbsp;共{{conditionList.totalElements}}条</button>
+               <button type="button" class="btn btn-default" ng-disabled="conditionList.number==conditionList.totalPages" ng-click="nextPageNumber()">下一页</button>
+               <button type="button" class="btn btn-default" ng-disabled="conditionList.last == true" ng-click="lastPageClick(conditionList.totalPages)">末页</button>
            </div>
             <div class="input-inline">每页
                 <select name="" id="" class="form-control input-inline input-mini">

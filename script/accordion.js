@@ -13,7 +13,7 @@ angular.module('commonalityApp')
         $scope.oneAtATime = true;
     }])
 .controller('UiAccordionController',['$scope','$attrs','uiAccordionConfig',function($scope,$attrs,uiAccordionConfig){
-    console.log(uiAccordionConfig.closeOthers)
+
 }])
 .directive('uiAccordion',function(){
     return{

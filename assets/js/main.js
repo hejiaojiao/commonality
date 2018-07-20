@@ -48,6 +48,11 @@ angular.module('commonalityApp',[ 'ui.router'])
             .state('form_verify', {
                 url: '/form_verify',
                 templateUrl: 'templates/form_verify.html'
+            })
+           /*懒加载*/
+            .state('lazy_loading', {
+                url: '/lazy_loading',
+                templateUrl: 'templates/lazy_loading.html'
             });
          $urlRouterProvider.otherwise('button')
         }
@@ -102,18 +107,23 @@ angular.module('commonalityApp',[ 'ui.router'])
                         itemName:[
                             {barName:'数据交互',uiSref:'form_verify'}
                         ]
+                    },
+                    {
+                        sidebarName:'加载',
+                        itemName:[
+                            {barName:'懒加载',uiSref:'lazy_loading'}
+                        ]
                     }
                 ];
             };
             /*当前是哪个界面就调用哪个方法*/
             if(window.location.hash == '#/button' || window.location.hash == '#/form'){
                 $scope.cssClick();
-            }else if( window.location.hash == '#/form_verify'){
+            }else if( window.location.hash == '#/form_verify' ||  window.location.hash == '#/lazy_loading'){
                 $scope.otherClick();
             }else{
                 $scope.scriptClick();
             }
-
         }
     /*代码示例组件*/
     hLight.$injector = [];

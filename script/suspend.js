@@ -4,14 +4,25 @@
 angular.module('commonalityApp')
 
 .controller('suspendController',['$scope','$http','$filter',function($scope,$http,$filter){
-    $http.get("http://122.114.75.166:8082/app/iptv/findChannels?tag=88888888")
-        .then(function success(res) {
-            $scope.roll_list = res.data.data;
-        },function error() {
-
-        });
+    //$http.get("http://122.114.75.166:8082/app/iptv/findChannels?tag=88888888")
+    //    .then(function success(res) {
+    //        $scope.roll_list = res.data.data;
+    //    },function error() {
+    //
+    //    });
 }])
 /*悬浮框*/
+.directive('suspend',[function(){
+    return{
+        restrict:'E',
+        template:'<div ng-transclude></div>',
+        transclude:true,
+        link:link
+    };
+    function link(scope,eleme,attrs){
+
+    }
+}])
 .directive('suspendBox',[function(){
         return{
             restrict:'E',
@@ -23,28 +34,24 @@ angular.module('commonalityApp')
                 'alertContent':'alertContent',
                 'alertIcon':'alertIcon'
             },
-            scope:{
-                openWay:'@'
-            },
             link:link,
             controller:function($scope,$element,$attrs){
 
             }
         };
         function link(scope,eleme,attrs){
-            var element = angular.element(document),
-                btn_box = element.find(".btn"),
-                alert_box = element.find(".alert-box"),
-                close_icon = element.find(".close-icon");
+            var btn_box = eleme.find(".btn"),
+                alert_box = eleme.find(".alert-box"),
+                close_icon = eleme.find(".close-icon");
             alert_box.css({
                 'display':'none'
             });
             /*获取宽高度和位置*/
             function getLocation(){
-                var clientH = eleme[0].lastChild.children[0].clientHeight,
-                    clientW = eleme[0].lastChild.children[0].clientWidth,
-                    offsetTop = eleme[0].offsetTop,
-                    offsetLeft = eleme[0].offsetLeft,
+                var clientH = eleme.find(".alert-box").outerHeight(),
+                    clientW = eleme.find(".alert-box").outerWidth(),
+                    offsetTop = eleme.offset().top,
+                    offsetLeft = eleme.offset().left,
                     offsetParent = eleme[0].offsetParent;
                 /*获取当前元素距离顶部以及最左侧的距离*/
                 while(offsetParent != null){
@@ -52,7 +59,6 @@ angular.module('commonalityApp')
                     offsetLeft += offsetParent.offsetLeft + offsetParent.clientLeft;
                     offsetParent = offsetParent.offsetParent;
                 }
-                console.log(clientW,offsetLeft);
                 /*判断距离显示位置*/
                 if(offsetTop>=clientH && offsetLeft>clientW){
                     alert_box.addClass('topRight')
@@ -63,7 +69,7 @@ angular.module('commonalityApp')
                 }
             }
             /*鼠标hover显示隐藏提示*/
-            if(scope.openWay == 'hover'){
+            if(attrs.openWay == 'hover'){
                 btn_box.on('mouseover',function(){
                     alert_box.css({
                         'display':'block'
@@ -79,7 +85,7 @@ angular.module('commonalityApp')
                     'display':'none'
                 });
                 /*点击显示隐藏提示*/
-            }else if(scope.openWay == 'click'){
+            }else if(attrs.openWay == 'click'){
                 btn_box.on('click',function(){
                     alert_box.css({
                         'display':'block'

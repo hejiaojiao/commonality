@@ -40,33 +40,38 @@ app.config(["$httpProvider", function($httpProvider) {
 formValidController.$injector = ['$scope','$http','$filter'];
 function formValidController($scope,$http,$filter) {
     /*接口调用*/
-    $http.get('http://10.6.23.13:1088/applogs/api/logs?page=0&size=10').then(function success(data){
+    var currentPage = 0;
+    $scope.query = function(currentPage){
+        $http.get('http://10.6.23.13:1088/applogs/api/logs?page='+currentPage+'&size=10').then(function success(data){
             if(data.status == 200){
-                $scope.query = function(){
-                    $scope.conditionList = data.data;
-                    $scope.dataList = data.data.content;
-                    $scope.number = $scope.conditionList.number +1;
-                };
-                $scope.query();
-                console.log($scope.conditionList);
-                $scope.previousPageNumber = function(){
-                    $scope.number--;
-                    if($scope.number<=0){
-
-                    }
-                };
-                $scope.nextPageNumber = function(){
-                    $scope.number++;
-                }
+                $scope.conditionList = data.data;
+                $scope.dataList = data.data.content;
+                $scope.number = $scope.conditionList.number +1;
             }else{
                 $scope.loadErrorMsgb = true;
                 $scope.loadErrorMsg ='数据加载失败！'
             }
-            },function error(){
+        },function error(){
             $scope.loadErrorMsgb = true;
             $scope.loadErrorMsg ='数据加载失败！'
-     });
+        });
+    };
+    $scope.query(currentPage);
+    /*上一页下一页*/
+    $scope.previousPageNumber = function(){
+        $scope.query(currentPage-=1)
+    };
+    $scope.nextPageNumber = function(){
+        $scope.query(currentPage+=1)
+    };
+    /*首页末页*/
+    $scope.homePageClick = function(){
+        $scope.query(0)
+    };
+    $scope.lastPageClick = function(totalPages){
+        $scope.query(totalPages)
     }
+}
 
 
 
