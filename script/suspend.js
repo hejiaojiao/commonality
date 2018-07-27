@@ -3,14 +3,17 @@
  */
 angular.module('commonalityApp')
 
-.controller('suspendController',['$scope','$http','$filter',function($scope,$http,$filter){
-    //$http.get("http://122.114.75.166:8082/app/iptv/findChannels?tag=88888888")
-    //    .then(function success(res) {
-    //        $scope.roll_list = res.data.data;
-    //    },function error() {
-    //
-    //    });
-}])
+.controller('suspendController',['$scope','$http','$filter','$document',function($scope,$http,$filter,$document){
+       $scope.dropdownClick = function(event){
+           $document.find('.dropdown').addClass('open');
+       };
+       $document.bind("click", function(event){
+            if(event.currentTarget){
+                console.log(event)
+            }
+
+       });
+    }])
 /*悬浮框*/
 .directive('suspend',[function(){
     return{
