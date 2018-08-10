@@ -8,121 +8,123 @@ angular.module('commonalityApp',[ 'ui.router'])
 
     config.$injector = ['$stateProvider','$urlRouterProvider','$locationProvider'];
      function config($stateProvider, $urlRouterProvider,$locationProvider){
-         $locationProvider.hashPrefix('');
+         $urlRouterProvider.when("", "/OSStyle/button");
          $stateProvider
-            .state('home', {
-                url: '/home',
-                templateUrl: 'layouts/home.html'
+             /*======全局样式======*/
+            .state('OSStyle', {
+                url: '/OSStyle',
+                templateUrl: 'OSStyle/OSStyle.html',
+                 controller:function($state){
+                     $state.go('OSStyle.button')
+                 }
             })
             /*按钮*/
-            .state('button', {
+            .state('OSStyle.button', {
                 url: '/button',
-                templateUrl: 'templates/button.html'
+                templateUrl: 'OSStyle/button.html'
             })
             /*表单*/
-            .state('forms', {
+            .state('OSStyle.forms', {
                 url: '/forms',
-                templateUrl: 'templates/forms.html'
+                templateUrl: 'OSStyle/forms.html'
             })
+             /*=========组件=============*/
+             .state('subassembly', {
+                 url: '/subassembly',
+                 templateUrl: 'subassembly/subassembly.html',
+                 controller:function($state){
+                     $state.go('subassembly.suspend')
+                 }
+             })
             /*悬浮框*/
-            .state('suspend', {
+            .state('subassembly.suspend', {
                 url: '/suspend',
-                templateUrl: 'templates/suspend.html'
+                templateUrl: 'subassembly/suspend.html'
             })
             /*轮播*/
-            .state('carousel', {
+            .state('subassembly.carousel', {
                 url: '/carousel',
-                templateUrl: 'templates/carousel.html'
+                templateUrl: 'subassembly/carousel.html'
             })
             /*Accordion*/
-            .state('modal', {
+            .state('subassembly.modal', {
                 url: '/modal',
-                templateUrl: 'templates/modal.html'
+                templateUrl: 'subassembly/modal.html'
             })
              /*modal*/
-            .state('accordion', {
+            .state('subassembly.accordion', {
                 url: '/accordion',
-                templateUrl: 'templates/accordion.html'
+                templateUrl: 'subassembly/accordion.html'
             })
+             /*==========其他=======*/
+             .state('other', {
+                 url: '/other',
+                 templateUrl: 'other/other.html',
+                 controller:function($state){
+                     $state.go('other.form_verify')
+                 }
+             })
             /*数据交互*/
-            .state('form_verify', {
+            .state('other.form_verify', {
                 url: '/form_verify',
-                templateUrl: 'templates/form_verify.html'
+                templateUrl: 'other/form_verify.html'
             })
            /*懒加载*/
-            .state('lazy_loading', {
+            .state('other.lazy_loading', {
                 url: '/lazy_loading',
-                templateUrl: 'templates/lazy_loading.html'
+                templateUrl: 'other/lazy_loading.html'
             });
-         $urlRouterProvider.otherwise('button')
         }
         homeController.$injector = ['$scope','$http','$state'];
         function homeController($scope,$http,$state,$timeout){
             /*sidebar click*/
-            $scope.cssClick = function () {
-                $state.go("button");
-                $scope.sidebartitle = '基于Bootstrap全局css样式重构';
-                $scope.sidebarintroduce = '设置全局 CSS 样式；基本的 HTML 元素均可以通过 class 设置样式并得到增强效果。';
-                $scope.isClick = 1;
-                $scope.sidebarItem = [
-                    {
-                        sidebarName:'按钮',
-                        itemName:[
-                            {barName:'按钮',uiSref:'button'}
-                        ]
-                    },
-                    {
-                        sidebarName:'表单',
-                        itemName:[
-                            {barName:'表单',uiSref:'forms'}
-                        ]
-                    }
-                ];
-            };
-            $scope.scriptClick = function () {
-                $state.go("suspend");
-                $scope.sidebartitle = 'JavaScript 插件';
-                $scope.sidebarintroduce = 'jQuery 插件为 Bootstrap 的组件赋予了“生命”。可以简单地一次性引入所有插件，或者逐个引入到你的页面中。';
-                $scope.isClick = 2;
-                $scope.sidebarItem = [
-                    {
-                        sidebarName:'自定义指令',
-                        itemName:[
-                            {barName:'悬浮提示',uiSref:'suspend'},
-                            {barName:'轮播',uiSref:'carousel'},
-                            {barName:'弹窗',uiSref:'modal'},
-                            {barName:'手风琴',uiSref:'accordion'}
-                        ]
-                    }
-                ];
-            };
-            $scope.otherClick = function () {
-                $state.go("form_verify");
-                $scope.sidebartitle = 'JavaScript 插件';
-                $scope.sidebarintroduce = 'jQuery 插件为 Bootstrap 的组件赋予了“生命”。可以简单地一次性引入所有插件，或者逐个引入到你的页面中。';
-                $scope.isClick = 3;
-                $scope.sidebarItem = [
-                    {
-                        sidebarName:'数据交互',
-                        itemName:[
-                            {barName:'数据交互',uiSref:'form_verify'}
-                        ]
-                    },
-                    {
-                        sidebarName:'加载',
-                        itemName:[
-                            {barName:'懒加载',uiSref:'lazy_loading'}
-                        ]
-                    }
-                ];
-            };
-            /*当前是哪个界面就调用哪个方法*/
-            if(window.location.hash == '#/button' || window.location.hash == '#/form'){
-                $scope.cssClick();
-            }else if( window.location.hash == '#/form_verify' ||  window.location.hash == '#/lazy_loading'){
-                $scope.otherClick();
-            }else{
-                $scope.scriptClick();
+            $scope.OSStyle = [
+                {
+                    sidebarName:'按钮',
+                    itemName:[
+                        {barName:'按钮',uiSref:'.button'}
+                    ]
+                },
+                {
+                    sidebarName:'表单',
+                    itemName:[
+                        {barName:'表单',uiSref:'.forms'}
+                    ]
+                }
+            ];
+            $scope.subassembly = [
+                {
+                    sidebarName:'自定义指令',
+                    itemName:[
+                        {barName:'悬浮提示',uiSref:'.suspend'},
+                        {barName:'轮播',uiSref:'.carousel'},
+                        {barName:'弹窗',uiSref:'.modal'},
+                        {barName:'手风琴',uiSref:'.accordion'}
+                    ]
+                }
+            ];
+            $scope.other = [
+                {
+                    sidebarName:'数据交互',
+                    itemName:[
+                        {barName:'数据交互',uiSref:'.form_verify'}
+                    ]
+                },
+                {
+                    sidebarName:'加载',
+                    itemName:[
+                        {barName:'懒加载',uiSref:'.lazy_loading'}
+                    ]
+                }
+            ];
+
+            /*顶部描述*/
+            if(window.location.hash.indexOf('OSStyle') != -1){
+                $scope.sidebartitle = "css全局样式";
+                $scope.sidebarintroduce = "css全局样式";
+            }else if(window.location.hash.indexOf('subassembly') != -1){
+                $scope.sidebartitle = "angularJs组件";
+                $scope.sidebarintroduce = "angularJs组件";
             }
         }
     /*代码示例组件*/

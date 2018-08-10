@@ -10,21 +10,20 @@ $warning-darken:darken($warning-color,18%);
   top: 0;
   left: 100%;
 }
-/**/
-.alert-wrap{
-  position: relative;
+/*悬浮提示*/
+.pos-alert-content{
+  position: absolute;
   .alert-box{
-    padding:5px 20px;
+    padding:5px 25px 5px 10px;
     background-color: $warning-color;
     border: solid 1px $warning-darken;
     position: absolute;
-    top: 45px;
-    left: 0;
+    top: 10px;
     z-index: 99;
     font-size: 12px;
-    border-radius: 6px;
+    border-radius: 3px;
     box-shadow: 0 4px 15px -2px $warning-darken;
-    
+    width: 200px;
     p{
       margin-bottom: 0;
     }
@@ -32,54 +31,52 @@ $warning-darken:darken($warning-color,18%);
     &:after,&:before{
       content: '';
       position: absolute;
-      left: 28px;
-      border-right: transparent solid 8px;
-      border-left: transparent solid 8px;
+      left: 6px;
+      border-right: transparent solid 6px;
+      border-left: transparent solid 6px;
     }
     &:after{
-      border-bottom: $warning-color solid 13px;
-      top: -11px;
+      border-top: $warning-color solid 11px;
+      bottom: -9px;
     }
     &:before{
-      border-bottom: $warning-darken solid 12px;
-      top: -12px;
+      border-top: $warning-darken solid 10px;
+      bottom: -10px;
     }
-    /*上左、上右*/
-    &.topLeft{
-      left: 0;
-    }
-    &.topRight{
-      right:  -80px;
-      left: inherit;
+    &.bottomRight{
       &:after,&:before{
-        right: 28px;
-        left: inherit;
-      }
-    }
-    &.topLeft,&.topRight{
-      bottom: 45px;
-      top: inherit;
-      &:after,&:before{
-        top: inherit;
-        border-bottom:0;
+        bottom: inherit;
+        border-top:0;
       }
       &:after{
-        border-top: $warning-color solid 13px;
-        bottom: -11px;
+        border-bottom: $warning-color solid 11px;
+        top: -9px;
       }
       &:before{
-        border-top: $warning-darken solid 12px;
-        bottom: -12px;
+        border-bottom: $warning-darken solid 10px;
+        top: -10px;
       }
     }
-    /*下右*/
-    &.bottomRight{
-      top: 45px;
-      right: -80px;
-      left: inherit;
+    &.bottomLeft{
       &:after,&:before{
-        right: 28px;
+        bottom: inherit;
+        border-top:0;
         left: inherit;
+        right: 6px;
+      }
+      &:after{
+        border-bottom: $warning-color solid 11px;
+        top: -9px;
+      }
+      &:before{
+        border-bottom: $warning-darken solid 10px;
+        top: -10px;
+      }
+    }
+    &.topLeft{
+      &:after,&:before{
+        left: inherit;
+        right: 6px;
       }
     }
   }

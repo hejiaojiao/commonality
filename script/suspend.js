@@ -4,104 +4,105 @@
 angular.module('commonalityApp')
 
 .controller('suspendController',['$scope','$http','$filter','$document',function($scope,$http,$filter,$document){
-       $scope.dropdownClick = function(event){
+       $scope.dropdownClick = function(){
            $document.find('.dropdown').addClass('open');
        };
-       $document.bind("click", function(event){
-            if(event.currentTarget){
-                console.log(event)
-            }
-
+       $document.bind("click", function(){
+           $document.find('.dropdown').removeClass('open');
        });
+       $document.find(".dropdown-menu").click(function($event){
+           $event.stopPropagation();
+       });
+
+
+        $scope.userNmae = {
+            'name':'<p>哈哈哈哈哈哈哈哈哈哈</p>' +
+            '<p>哈哈哈哈哈哈哈哈哈哈</p>' +
+            '<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</p>'
+        };
     }])
 /*悬浮框*/
-.directive('suspend',[function(){
+.directive('suspendAlert',['$document',function($document){
     return{
-        restrict:'E',
-        template:'<div ng-transclude></div>',
-        transclude:true,
+        restrict:'A',
+        scope:{
+            alertContent:'@'
+        },
         link:link
     };
-    function link(scope,eleme,attrs){
-
-    }
-}])
-.directive('suspendBox',[function(){
-        return{
-            restrict:'E',
-            template:'<div ng-transclude="alertIcon"></div>'+
-            '<div class="pos-alert">' +
-            '<div class="alert-box"><div ng-transclude="alertContent"></div><div class="close-icon fa fa-close"></div></div>' +
-            '</div>',
-            transclude:{
-                'alertContent':'alertContent',
-                'alertIcon':'alertIcon'
-            },
-            link:link,
-            controller:function($scope,$element,$attrs){
-
+    function link(scope,element,attrs){
+        function locationFun($event){
+            var $html = '<div class="pos-alert-content">' +
+                '<div class="alert-box" id="alert-box"><div class="alert-content"></div><div class="close-icon fa fa-close" ng-show=""></div></div>' +
+                '</div>';
+            $document.find('body').append($html);
+            $document.find('body').css({'position':'relative'});
+            /*计算触发点的位置*/
+            var target = $event.target,
+                offsetTop = target.offsetTop,
+                offsetLeft = target.offsetLeft,
+                offsetParent = target.offsetParent;
+            while(offsetParent != null){
+                offsetTop += offsetParent.offsetTop + offsetParent.clientTop;
+                offsetLeft += offsetParent.offsetLeft + offsetParent.clientLeft;
+                offsetParent = offsetParent.offsetParent;
             }
-        };
-        function link(scope,eleme,attrs){
-            var btn_box = eleme.find(".btn"),
-                alert_box = eleme.find(".alert-box"),
-                close_icon = eleme.find(".close-icon");
-            alert_box.css({
-                'display':'none'
-            });
-            /*获取宽高度和位置*/
-            function getLocation(){
-                var clientH = eleme.find(".alert-box").outerHeight(),
-                    clientW = eleme.find(".alert-box").outerWidth(),
-                    offsetTop = eleme.offset().top,
-                    offsetLeft = eleme.offset().left,
-                    offsetParent = eleme[0].offsetParent;
-                /*获取当前元素距离顶部以及最左侧的距离*/
-                while(offsetParent != null){
-                    offsetTop += offsetParent.offsetTop + offsetParent.clientTop;
-                    offsetLeft += offsetParent.offsetLeft + offsetParent.clientLeft;
-                    offsetParent = offsetParent.offsetParent;
-                }
-                /*判断距离显示位置*/
-                if(offsetTop>=clientH && offsetLeft>clientW){
-                    alert_box.addClass('topRight')
-                }else if(offsetTop>=clientH && offsetLeft<clientW){
-                    alert_box.addClass('topLeft')
-                }else if(offsetTop<clientH && offsetLeft>clientW){
-                    alert_box.addClass('bottomRight')
-                }
-            }
-            /*鼠标hover显示隐藏提示*/
-            if(attrs.openWay == 'hover'){
-                btn_box.on('mouseover',function(){
-                    alert_box.css({
-                        'display':'block'
-                    });
-                    getLocation();
+
+            $document.find('.alert-content').html(scope.alertContent);
+            /*alert显示位置*/
+            var alert_content = $document.find('.pos-alert-content'),
+                alert_box = $document.find('.alert-box'),
+                alert_content_h = $document.find('#alert-box').outerHeight()+10,
+                alert_content_w = $document.find('#alert-box').outerWidth(),
+                window_w = $(window).width();
+
+            if(offsetTop >= alert_content_h && window_w - offsetLeft < alert_content_w){
+                alert_content.css({
+                    'left':offsetLeft-alert_content_w+target.offsetWidth+'px',
+                    'top':offsetTop- alert_content_h-10+'px'
                 });
-                btn_box.on('mouseout',function(){
-                    alert_box.css({
-                        'display':'none'
-                    });
+                alert_box.addClass('topLeft');
+            }else if(offsetTop < alert_content_h && window_w - offsetLeft > alert_content_w){
+                alert_content.css({
+                    'left':offsetLeft+'px',
+                    'top':offsetTop+target.offsetHeight+'px'
                 });
-                close_icon.css({
-                    'display':'none'
+                alert_box.addClass('bottomRight');
+            }else if(offsetTop < alert_content_h && offsetLeft > alert_content_w){
+                alert_content.css({
+                    'left':offsetLeft-alert_content_w+target.offsetWidth+'px',
+                    'top':offsetTop+target.offsetHeight+'px'
                 });
-                /*点击显示隐藏提示*/
-            }else if(attrs.openWay == 'click'){
-                btn_box.on('click',function(){
-                    alert_box.css({
-                        'display':'block'
-                    });
-                    getLocation();
-                });
-                close_icon.on('click',function(){
-                    alert_box.css({
-                        'display':'none'
-                    });
-                })
+                alert_box.addClass('bottomLeft');
             }else{
-
+                alert_content.css({
+                    'left':offsetLeft+'px',
+                    'top':offsetTop-alert_content_h-10+'px'
+                });
             }
         }
-    }]);
+        if(attrs.openWay == 'click'){
+            /*click显示提示*/
+            element.click(function($event){
+                locationFun($event);
+                $(window).resize(function() {
+                    locationFun($event);
+                });
+            });
+        }else{
+            /*hover显示提示*/
+            element.mouseover(function($event){
+                locationFun($event);
+                $(window).resize(function() {
+                    locationFun($event);
+                });
+            });
+            element.mouseout(function(){
+                $document.find('.pos-alert-content').remove();
+                $(window).resize(function() {
+                    $document.find('.pos-alert-content').remove();
+                });
+            });
+        }
+    }
+}]);

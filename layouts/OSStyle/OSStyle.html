@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="col-sm-3">
+        <div class="sidebar-content">
+            <ul class="sidebar-list">
+                <li class="sidebar-item" ng-repeat="items in OSStyle">
+                    <span>{{items.sidebarName}}</span>
+                    <ul class="sidebar-list" ng-repeat="item in items.itemName">
+                        <li class="sidebar-item"><a href="javascript:;" ui-sref="{{item.uiSref}}" ui-sref-active="active">{{item.barName}}</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-sm-9">
+        <div ui-view></div>
+    </div>
+</div>

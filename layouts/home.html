@@ -21,9 +21,9 @@
             <div class="container clearfix">
                 <div class="header-title pull-left">DOC</div>
                 <ul class="header-list pull-left">
-                    <li class="header-list-item" ng-click="cssClick()" ng-class="{'active':isClick == 1}">全局CSS样式</li>
-                    <li class="header-list-item" ng-click="scriptClick()" ng-class="{'active':isClick == 2}">JavaScript插件</li>
-                    <li class="header-list-item" ng-click="otherClick()" ng-class="{'active':isClick == 3}">其他</li>
+                    <li class="header-list-item" ui-sref="OSStyle" ui-sref-active="active">全局CSS样式</li>
+                    <li class="header-list-item" ui-sref="subassembly" ui-sref-active="active">JavaScript插件</li>
+                    <li class="header-list-item" ui-sref="other" ui-sref-active="active">其他</li>
                 </ul>
             </div>
         </nav>
@@ -34,23 +34,7 @@
              </div>
          </header>
         <div class="container container-content">
-            <div class="row">
-                <div class="col-sm-3">
-                    <div class="sidebar-content">
-                        <ul class="sidebar-list">
-                            <li class="sidebar-item" ng-repeat="items in sidebarItem">
-                                <span>{{items.sidebarName}}</span>
-                                <ul class="sidebar-list" ng-repeat="item in items.itemName">
-                                    <li class="sidebar-item"><a href="" ui-sref="{{item.uiSref}}" ui-sref-active="active" ng-class="{'active':item.uiSref == this}">{{item.barName}}</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-9">
-                    <div ui-view></div>
-                </div>
-            </div>
+            <div ui-view=""></div>
         </div>
  </div>
 

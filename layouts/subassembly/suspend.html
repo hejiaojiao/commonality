@@ -1,0 +1,24 @@
+<div class="row">
+    <div class="col-sm-12">
+        <h3 class="no-margin border-bottom">悬浮提示</h3>
+    </div>
+    <div class="col-sm-12 margin-top-10" ng-controller="suspendController">
+        <div class="dropdown">
+            <button class="btn btn-default" type="button" ng-click="dropdownClick()">点击我</button>
+            <ul class="dropdown-menu">
+                <li>aaaaaaaaaaa</li>
+                <li>aaaaaaaaaaa1</li>
+                <li>aaaaaaaaaaa2</li>
+                <li>aaaaaaaaaaa3</li>
+                <li>
+                    <button class="btn btn-sm btn-warning pull-right">取消</button>
+                </li>
+            </ul>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-body" style="height: 200px;overflow-y: auto">
+                <button class="btn btn-warning" type="button" suspend-alert alert-content="{{userNmae.name}}">鼠标hover显示</button>
+            </div>
+        </div>
+    </div>
+</div>
