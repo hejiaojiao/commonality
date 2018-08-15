@@ -3,26 +3,8 @@
         <h3 class="no-margin border-bottom"></h3>
     </div>
     <div class="col-sm-12 margin-top-10" ng-controller="lazyLoadingController">
-        <table class="table table-bordered">
-            <thead>
-            <tr>
-                <th>序号</th>
-                <th>姓名</th>
-                <th>年龄</th>
-                <th>籍贯</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="list in lists">
-                <td>{{$index+1}}</td>
-                <td>{{list.name}}</td>
-                <td>{{list.age}}</td>
-                <td>{{list.native_place}}</td>
-            </tr>
-            </tbody>
-        </table>
         <ul class="lazy-img-list">
-            <li ng-repeat="imgList in lazy_imgList" lazy-load><img class="lazy-img" ng-src="{{imgList.src}}" alt=""/></li>
+            <li ng-repeat="imgList in lazy_imgList"><img class="lazy-img" lazy-load="" ng-src="{{imgList.src}}" alt=""/></li>
         </ul>
     </div>
 </div>

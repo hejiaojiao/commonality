@@ -14,8 +14,9 @@ angular.module('commonalityApp',[ 'ui.router'])
             .state('OSStyle', {
                 url: '/OSStyle',
                 templateUrl: 'OSStyle/OSStyle.html',
-                 controller:function($state){
-                     $state.go('OSStyle.button')
+                 controller:function($state,$scope){
+                     $state.go('OSStyle.button');
+                     $scope.OSStyleFun();
                  }
             })
             /*按钮*/
@@ -32,8 +33,9 @@ angular.module('commonalityApp',[ 'ui.router'])
              .state('subassembly', {
                  url: '/subassembly',
                  templateUrl: 'subassembly/subassembly.html',
-                 controller:function($state){
-                     $state.go('subassembly.suspend')
+                 controller:function($state,$scope){
+                     $state.go('subassembly.suspend');
+                     $scope.subassemblyFun();
                  }
              })
             /*悬浮框*/
@@ -60,8 +62,9 @@ angular.module('commonalityApp',[ 'ui.router'])
              .state('other', {
                  url: '/other',
                  templateUrl: 'other/other.html',
-                 controller:function($state){
-                     $state.go('other.form_verify')
+                 controller:function($state,$scope){
+                     $state.go('other.form_verify');
+                     $scope.otherFun();
                  }
              })
             /*数据交互*/
@@ -77,7 +80,7 @@ angular.module('commonalityApp',[ 'ui.router'])
         }
         homeController.$injector = ['$scope','$http','$state'];
         function homeController($scope,$http,$state,$timeout){
-            /*sidebar click*/
+            /*sidebar list*/
             $scope.OSStyle = [
                 {
                     sidebarName:'按钮',
@@ -117,14 +120,18 @@ angular.module('commonalityApp',[ 'ui.router'])
                     ]
                 }
             ];
-
             /*顶部描述*/
-            if(window.location.hash.indexOf('OSStyle') != -1){
+            $scope.OSStyleFun = function(){
                 $scope.sidebartitle = "css全局样式";
                 $scope.sidebarintroduce = "css全局样式";
-            }else if(window.location.hash.indexOf('subassembly') != -1){
+            };
+            $scope.subassemblyFun = function(){
                 $scope.sidebartitle = "angularJs组件";
                 $scope.sidebarintroduce = "angularJs组件";
+            };
+            $scope.otherFun = function(){
+                $scope.sidebartitle = "其他";
+                $scope.sidebarintroduce = "其他";
             }
         }
     /*代码示例组件*/

@@ -10,7 +10,7 @@ angular.module('commonalityApp')
        $document.bind("click", function(){
            $document.find('.dropdown').removeClass('open');
        });
-       $document.find(".dropdown-menu").click(function($event){
+       $document.find(".dropdown").click(function($event){
            $event.stopPropagation();
        });
 
@@ -33,7 +33,7 @@ angular.module('commonalityApp')
     function link(scope,element,attrs){
         function locationFun($event){
             var $html = '<div class="pos-alert-content">' +
-                '<div class="alert-box" id="alert-box"><div class="alert-content"></div><div class="close-icon fa fa-close" ng-show=""></div></div>' +
+                '<div class="alert-box" id="alert-box"><div class="alert-content"></div><!--<div class="close-icon fa fa-close" ng-show=""></div>--></div>' +
                 '</div>';
             $document.find('body').append($html);
             $document.find('body').css({'position':'relative'});

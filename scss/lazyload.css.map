@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAEI,qBAAG;EACD,KAAK,EAAE,KAAK",
-"sources": ["lazyload.scss"],
-"names": [],
-"file": "lazyload.css"
-}

@@ -1,8 +1,0 @@
-.collapse {
-  height: 0; }
-  .collapse, .collapse.in {
-    display: inherit;
-    overflow: hidden;
-    transition: all .5s; }
-
-/*# sourceMappingURL=accordion.css.map */

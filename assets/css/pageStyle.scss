@@ -1,8 +1,10 @@
 /*doc public module css*/
-$theme-color:#26ABE2;
+$theme-color: #31BF9E;
 $theme-darken:darken($theme-color,25%);
 $border-gray:#ccc;
-
+.red{
+  color: red;
+}
 *{
   padding: 0;
   margin: 0;
@@ -128,12 +130,16 @@ pre{
 .sidebar-content{
   background-color: #f4f4f4;
   >.sidebar-list{
+    border-left: solid 4px $theme-color;
     >.sidebar-item{
-      padding:10px 0 0 15px;
+      padding-top:10px;
       color: #000;
+      >span{
+        margin-left: 15px;
+      }
       >.sidebar-list{
         >.sidebar-item{
-          padding:5px 10px;
+          padding:5px 30px;
           >a{
             text-decoration: none;
             color: #777676;
