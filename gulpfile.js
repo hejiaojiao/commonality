@@ -15,4 +15,5 @@ gulp.task('index', function() {
         gulp.src('layouts/home.html')
             .pipe(inject(ComponentsCss,DemoCss))
             .pipe(gulp.dest('dist'))
+
 });
