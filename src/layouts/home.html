@@ -1,14 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="commonalityApp">
 <head>
     <meta charset="UTF-8">
     <title></title>
-    <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- build:css ../assets/css/vendor.min.css-->
+    <link href="../../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../assets/font/css/font-awesome.css" rel="stylesheet">
+    <!-- endbuild-->
+
     <!-- inject:css -->
     <!-- endinject -->
+
+    <!-- build:js ../assets/js/vendor.min.js-->
+    <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../../node_modules/angular/angular.min.js"></script>
+    <script src="../../node_modules/@uirouter/angularjs/release/angular-ui-router.min.js"></script>
+    <!-- endbuild-->
+
+    <!-- inject:js -->
+    <!-- endinject -->
 </head>
-<body ng-app="commonalityApp">
+<body>
  <div class="pages-content" ng-controller="homeController">
         <nav>
             <div class="container clearfix">
@@ -31,19 +43,5 @@
         </div>
  </div>
 
- <script src="../node_modules/jquery/dist/jquery.min.js"></script>
- <script src="../node_modules/angular/angular.min.js"></script>
- <script src="../node_modules/@uirouter/angularjs/release/angular-ui-router.min.js"></script>
- <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
- <script src="../assets/js/marked/highlight.min.js"></script>
- <script src="../assets/js/marked/marked.min.js"></script>
- <script src="../assets/js/main.js"></script>
- <script src="../assets/layer/layer.js" ></script>
- <script src="../script/accordion.js"></script>
- <script src="../script/carousel.js"></script>
- <script src="../script/form_verify.js"></script>
- <script src="../script/modal.js"></script>
- <script src="../script/suspend.js"></script>
- <script src="../script/lazy_loading.js"></script>
 </body>
 </html>
