@@ -48,10 +48,11 @@ gulp.task('images',function(){
 });
 /*复制home页面把js、css注入进去并且合并第三方包*/
 gulp.task('usemin', function() {
-    var ComponentsJs = gulp.src(['src/script/*.js','src/assets/**/*.js']);
+    var DomeJs = gulp.src(['src/assets/js/**/*.js','src/assets/js/*.js']),
+        ComponentsJs = gulp.src(['src/script/*.js']);
     var ComponentsCss = gulp.src(['src/scss/*.scss','src/assets/css/*.scss']).pipe(sass());
         gulp.src(['src/**/home.html'])
-            .pipe(inject(series(ComponentsJs),{relative: true}))
+            .pipe(inject(series(ComponentsJs,DomeJs),{relative: true}))
             .pipe(inject(series(ComponentsCss),{relative: true}))
             .pipe(usemin())
             .pipe(gulp.dest('dist'))
@@ -59,13 +60,13 @@ gulp.task('usemin', function() {
 
 });
 // 监听文件变化
-gulp.task('watch', function () {
-    gulp.watch(['src/**/*.html', '!src/layouts/home.html'], ['html']);
-    gulp.watch(['src/**/*.js'], ['js']);
-    gulp.watch(['src/**/*.scss'], ['sass']);
-    gulp.watch(['src/layouts/home.html'], ['usemin']);
-});
+//gulp.task('watch', function () {
+//    gulp.watch(['src/**/*.html', '!src/layouts/home.html'], ['html']);
+//    gulp.watch(['src/**/*.js'], ['js']);
+//    gulp.watch(['src/**/*.scss'], ['sass']);
+//    gulp.watch(['src/layouts/home.html'], ['usemin']);
+//});
 
 gulp.task('default', function () {
-    runSequence('clean',['html','sass','images','js'],'usemin','watch')
+    runSequence('clean',['html','sass','images','js'],'usemin')
 });

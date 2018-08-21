@@ -1,7 +1,7 @@
 /**
  * Created by hejiao on 2018/7/3.
  */
-angular.module('commonalityApp')
+angular.module('commonalityApp',[])
     .controller('lazyLoadingController',['$scope','$http','$filter','$document',function($scope,$http,$filter,$document){
         $scope.lazy_imgList = [
             {'src':'../assets/images/02.jpg'},

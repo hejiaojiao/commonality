@@ -1,7 +1,7 @@
 /**
  * Created by 何娇  on 2018/4/27.
  */
-angular.module('commonalityApp')
+angular.module('commonalityApp',[])
 
 .controller('suspendController',['$scope','$http','$filter','$document',function($scope,$http,$filter,$document){
        $scope.dropdownClick = function(){

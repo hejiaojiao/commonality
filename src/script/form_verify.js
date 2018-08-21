@@ -1,7 +1,7 @@
 /**
  * Created by hejiao on 2018/5/8.
  */
-var app = angular.module('commonalityApp');
+var app = angular.module('commonalityApp',[]);
     app.controller("formValidController" , formValidController);
 
 /*全局加载*/

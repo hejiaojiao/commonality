@@ -2,7 +2,7 @@
  * Created by ºÎ½¿ on 2018/4/27.
  */
 
-var app = angular.module('commonalityApp');
+var app = angular.module('commonalityApp',[]);
 app.directive('carousel',carousel);
 app.directive('listRoll',listRoll);
 

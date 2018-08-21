@@ -1,7 +1,7 @@
 /**
  * Created by hejiao on 2018/6/13.
  */
-angular.module('commonalityApp')
+angular.module('commonalityApp',[])
 .constant('uiAccordionConfig', {
     closeOthers: true
 })
