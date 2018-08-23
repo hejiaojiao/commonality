@@ -5,11 +5,11 @@
     'use strict';
 
     angular.module('commonalityApp',[ 'ui.router'])
-        .config(config)
         .controller('homeController',homeController)
+        .config(config)
         .directive('hLight',hLight);
 
-    config.$injector = ['$stateProvider','$urlRouterProvider','$locationProvider'];
+    config.$inject = ['$stateProvider','$urlRouterProvider','$locationProvider'];
     function config($stateProvider, $urlRouterProvider,$locationProvider){
         $urlRouterProvider.when("", "/OSStyle/button");
         $stateProvider
@@ -51,12 +51,12 @@
                 url: '/carousel',
                 templateUrl: 'subassembly/carousel.html'
             })
-            /*Accordion*/
+            /*modal*/
             .state('subassembly.modal', {
                 url: '/modal',
                 templateUrl: 'subassembly/modal.html'
             })
-            /*modal*/
+            /*Accordion*/
             .state('subassembly.accordion', {
                 url: '/accordion',
                 templateUrl: 'subassembly/accordion.html'
@@ -81,8 +81,9 @@
                 templateUrl: 'other/lazy_loading.html'
             });
     }
-    homeController.$injector = ['$scope','$http','$state'];
-    function homeController($scope,$http,$state,$timeout){
+
+    homeController.$inject = ['$scope'];
+    function homeController($scope){
         /*sidebar list*/
         $scope.OSStyle = [
             {
@@ -138,7 +139,7 @@
         }
     }
     /*代码示例组件*/
-    hLight.$injector = [];
+    hLight.$inject = [];
     function hLight(){
         return {
             restrict: 'C',
