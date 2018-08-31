@@ -14,7 +14,7 @@ $warning-darken:darken($warning-color,18%);
 .pos-alert-content{
   position: absolute;
   .alert-box{
-    padding:5px 25px 5px 10px;
+    padding:5px;
     background-color: $warning-color;
     border: solid 1px $warning-darken;
     position: absolute;

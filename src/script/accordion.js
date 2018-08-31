@@ -3,7 +3,7 @@
  */
 (function(){
     'use strict';
-    angular.module('commonalityApp',[])
+    angular.module('commonalityApp')
         .directive('uiAccordion',uiAccordion)
         .directive('uiAccordionGroup',uiAccordionGroup)
         .directive('uiCollapse',uiCollapse)
@@ -25,7 +25,6 @@
         uiAccordion.$inject = [];
         function uiAccordion(){
             return{
-                controller:'UiAccordionController',
                 transclude: true,
                 template:'<div class="panel-group" ng-transclude></div>'
             }
@@ -34,7 +33,6 @@
         uiAccordionGroup.$inject = [];
         function uiAccordionGroup(){
             return{
-                require: '^uiAccordion',
                 transclude: true,
                 restrict: 'A',
                 template:'<div class="panel-heading">' +

@@ -3,7 +3,7 @@
  */
 (function() {
     'use strict';
-    angular.module('commonalityApp',[])
+    angular.module('commonalityApp')
     .directive('carousel', carousel)
     .directive('listRoll', listRoll)
     .directive('onFinishRenderFilters', onFinishRenderFilters)

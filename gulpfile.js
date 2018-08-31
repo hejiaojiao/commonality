@@ -50,11 +50,10 @@ gulp.task('images',function(){
 gulp.task('usemin', function() {
     var AssetsJs = gulp.src(['src/assets/js/**/*.js','src/assets/js/*.js']),
         DomeJs = gulp.src(['src/layouts/*.js']),
-        ControllerJs = gulp.src(['src/layouts/subassembly/*.js']),
         ComponentsJs = gulp.src(['src/script/*.js']);
     var ComponentsCss = gulp.src(['src/scss/*.scss','src/layouts/*.scss']).pipe(sass());
         gulp.src(['src/**/home.html'])
-            .pipe(inject(series(AssetsJs,ControllerJs,ComponentsJs,DomeJs),{relative: true}))
+            .pipe(inject(series(AssetsJs,DomeJs,ComponentsJs),{relative: true}))
             .pipe(inject(series(ComponentsCss),{relative: true}))
             .pipe(usemin())
             .pipe(gulp.dest('dist'))
@@ -63,13 +62,13 @@ gulp.task('usemin', function() {
 });
 
 // 监听文件变化
-//gulp.task('watch', function () {
-//    gulp.watch(['src/**/*.html', '!src/layouts/home.html'], ['html']);
-//    gulp.watch(['src/**/*.js'], ['js']);
-//    gulp.watch(['src/**/*.scss'], ['sass']);
-//    gulp.watch(['src/layouts/home.html'], ['usemin']);
-//});
+gulp.task('watch', function () {
+    gulp.watch(['src/**/*.html', '!src/layouts/home.html'], ['html']);
+    gulp.watch(['src/**/*.js'], ['js']);
+    gulp.watch(['src/**/*.scss'], ['sass']);
+    gulp.watch(['src/layouts/home.html'], ['usemin']);
+});
 
 gulp.task('default', function () {
-    runSequence('clean',['html','sass','images','js'],'usemin')
+    runSequence('clean',['html','sass','images','js'],'usemin','watch')
 });

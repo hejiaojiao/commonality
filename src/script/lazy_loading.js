@@ -3,7 +3,7 @@
  */
 (function() {
     'use strict';
-    angular.module('commonalityApp',[])
+    angular.module('commonalityApp')
         .directive('lazyLoad', lazyLoad)
         .controller('lazyLoadingController', lazyLoadingController);
 

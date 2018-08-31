@@ -3,49 +3,8 @@
  */
 (function() {
     'use strict';
-angular.module('commonalityApp',[])
-    .controller("formValidController", formValidController)
-    .factory('httpInterceptor',httpInterceptor)
-    .config('$httpProvider',$httpProvider);
-
-    /*全局加载*/
-    var httpCount = 0;
-    httpInterceptor.$inject = ["$q", "$rootScope"];
-    function httpInterceptor($q, $rootScope) {
-        return {
-            request: function (config) {
-                httpCount++;
-                //layer.load();
-                return config || $q.when(config);
-            },
-            requestError: function (rejection) {
-                httpCount--;
-                return $q.reject(rejection);
-            },
-            response: function (response) {
-                httpCount--;
-                if (httpCount == 0) {
-                    //layer.closeAll();
-                }
-                return response || $q.when(response);
-            },
-            responseError: function (rejection) {
-                httpCount--;
-                if (httpCount == 0) {
-                    //layer.closeAll();
-                }
-                return $q.reject(rejection);
-            }
-        };
-    }
-
-    $httpProvider.$inject = ['$httpProvider'];
-   function $httpProvider($httpProvider) {
-        $httpProvider.interceptors.push('httpInterceptor');
-    }
-
-    formValidController.$inject = ['$scope', '$http', '$filter'];
-    function formValidController($scope, $http, $filter) {
+angular.module('commonalityApp')
+    .controller("formValidController",['$scope', '$http', '$filter',function($scope, $http, $filter){
         /*接口调用*/
         var currentPage = 0;
         $scope.query = function (currentPage) {
@@ -78,7 +37,38 @@ angular.module('commonalityApp',[])
         $scope.lastPageClick = function (totalPages) {
             $scope.query(totalPages)
         }
-    }
+    }])
+    .factory('httpInterceptor',function($q){
+        var httpCount = 0;
+        return {
+            request: function (config) {
+                httpCount++;
+                //layer.load();
+                return config || $q.when(config);
+            },
+            requestError: function (rejection) {
+                httpCount--;
+                return $q.reject(rejection);
+            },
+            response: function (response) {
+                httpCount--;
+                if (httpCount == 0) {
+                    //layer.closeAll();
+                }
+                return response || $q.when(response);
+            },
+            responseError: function (rejection) {
+                httpCount--;
+                if (httpCount == 0) {
+                    //layer.closeAll();
+                }
+                return $q.reject(rejection);
+            }
+        };
+    })
+    .config(['$httpProvider', function($httpProvider){
+        $httpProvider.interceptors.push('httpInterceptor');
+    }]);
 
 }());
 

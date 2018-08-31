@@ -3,7 +3,7 @@
  */
 (function() {
     'use strict';
-    angular.module('commonalityApp',[])
+    angular.module('commonalityApp')
         .controller('modalController', modalController);
 
     modalController.$inject = ['$scope'];

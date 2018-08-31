@@ -3,7 +3,7 @@
  */
 (function() {
     'use strict';
-    angular.module('commonalityApp',[])
+    angular.module('commonalityApp')
         .directive('suspendAlert', suspendAlert)
         .controller('suspendController', suspendController);
 
@@ -39,7 +39,7 @@
         function link(scope, element, attrs) {
             function locationFun($event) {
                 var $html = '<div class="pos-alert-content">' +
-                    '<div class="alert-box" id="alert-box"><div class="alert-content"></div><!--<div class="close-icon fa fa-close" ng-show=""></div>--></div>' +
+                    '<div class="alert-box" id="alert-box"><div class="alert-content"></div><div class="close-icon fa fa-close"></div></div>' +
                     '</div>';
                 $document.find('body').append($html);
                 $document.find('body').css({'position': 'relative'});
@@ -96,6 +96,7 @@
                         locationFun($event);
                     });
                 });
+
             } else {
                 /*hover显示提示*/
                 element.mouseover(function ($event) {
