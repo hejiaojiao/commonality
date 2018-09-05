@@ -8,7 +8,7 @@ angular.module('commonalityApp')
         /*接口调用*/
         var currentPage = 0;
         $scope.query = function (currentPage) {
-            $http.get('http://10.6.23.13:1088/applogs/api/logs?page=' + currentPage + '&size=10').then(function success(data) {
+            $http.get('http://10.6.23.13:3081/applogs/api/logs?page=' + currentPage + '&size=10').then(function success(data) {
                 if (data.status == 200) {
                     $scope.conditionList = data.data;
                     $scope.dataList = data.data.content;
@@ -38,12 +38,21 @@ angular.module('commonalityApp')
             $scope.query(totalPages)
         }
     }])
-    .factory('httpInterceptor',function($q){
+
+    /*全局加载*/
+    .factory('httpInterceptor',function($q,$document){
         var httpCount = 0;
+        var $html = "<div class='loading-wrap'><i class='fa fa-spinner'></i></div>";
+        function load(){
+            $document.find('body').append($html)
+        }
+        function closeLoad(){
+            $document.find('.loading-wrap').remove();
+        }
         return {
             request: function (config) {
                 httpCount++;
-                //layer.load();
+                load();
                 return config || $q.when(config);
             },
             requestError: function (rejection) {
@@ -53,14 +62,14 @@ angular.module('commonalityApp')
             response: function (response) {
                 httpCount--;
                 if (httpCount == 0) {
-                    //layer.closeAll();
+                    closeLoad();
                 }
                 return response || $q.when(response);
             },
             responseError: function (rejection) {
                 httpCount--;
                 if (httpCount == 0) {
-                    //layer.closeAll();
+                    closeLoad();
                 }
                 return $q.reject(rejection);
             }
@@ -69,7 +78,6 @@ angular.module('commonalityApp')
     .config(['$httpProvider', function($httpProvider){
         $httpProvider.interceptors.push('httpInterceptor');
     }]);
-
 }());
 
 

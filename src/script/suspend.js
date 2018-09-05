@@ -21,7 +21,7 @@
 
         $scope.userNmae = {
             'name': '<p>哈哈哈哈哈哈哈哈哈哈</p>' +
-            '<p>哈哈哈哈哈哈哈哈哈哈</p>' +
+            '<a href="">哈哈哈哈哈哈哈哈哈哈</a>' +
             '<p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</p>'
         };
     }
@@ -95,8 +95,15 @@
                     $(window).resize(function () {
                         locationFun($event);
                     });
+                    $document.find('.close-icon').css('display','block');
+                    $document.find('.alert-content').css('padding-right','20px');
+                    $document.find('.close-icon').click(function(){
+                        $document.find('.pos-alert-content').remove();
+                        $(window).resize(function () {
+                            $document.find('.pos-alert-content').remove();
+                        });
+                    })
                 });
-
             } else {
                 /*hover显示提示*/
                 element.mouseover(function ($event) {

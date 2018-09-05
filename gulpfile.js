@@ -39,6 +39,13 @@ gulp.task('sass', function () {
         .pipe(gulp.dest('dist'))
         .pipe(connect.reload())
 });
+//¸´ÖÆfont
+gulp.task('font',function(){
+   gulp
+    .src('src/**/font/**/*')
+   .pipe(gulp.dest('dist'))
+   .pipe(connect.reload())
+});
 //¸´ÖÆimges
 gulp.task('images',function(){
     gulp
@@ -52,9 +59,10 @@ gulp.task('usemin', function() {
         DomeJs = gulp.src(['src/layouts/*.js']),
         ComponentsJs = gulp.src(['src/script/*.js']);
     var ComponentsCss = gulp.src(['src/scss/*.scss','src/layouts/*.scss']).pipe(sass());
+    var fontCss = gulp.src(['src/**/font/**/*.css']);
         gulp.src(['src/**/home.html'])
             .pipe(inject(series(AssetsJs,DomeJs,ComponentsJs),{relative: true}))
-            .pipe(inject(series(ComponentsCss),{relative: true}))
+            .pipe(inject(series(ComponentsCss,fontCss),{relative: true}))
             .pipe(usemin())
             .pipe(gulp.dest('dist'))
             .pipe(connect.reload())
@@ -70,5 +78,5 @@ gulp.task('watch', function () {
 });
 
 gulp.task('default', function () {
-    runSequence('clean',['html','sass','images','js'],'usemin','watch')
+    runSequence('clean',['html','sass','images','font','js'],'usemin','watch')
 });

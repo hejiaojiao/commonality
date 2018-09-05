@@ -5,3 +5,39 @@
     }
   }
 }
+/*全局加载样式*/
+.loading-wrap{
+  width: 100%;
+  height: 100%;
+  background-color: rgba(57, 57, 57, 0.45);
+  position: fixed;
+  top: 0;
+  left: 0;
+  text-align: center;
+  z-index: 99;
+  .fa{
+    font-size: 40px;
+    color: #fff;
+    position: absolute;
+    top:48%;
+    -webkit-transition-property: -webkit-transform;
+    -webkit-transition-duration: 1.5s;
+    -moz-transition-property: -moz-transform;
+    -moz-transition-duration: 1.5s;
+    -webkit-animation: rotate 1.5s linear infinite;
+    -moz-animation: rotate 1.5s linear infinite;
+    -o-animation: rotate 1.5s linear infinite;
+    animation: rotate 1.5s linear infinite;}
+    @-webkit-keyframes rotate{from{-webkit-transform: rotate(0deg)}
+      to{-webkit-transform: rotate(360deg)}
+    }
+    @-moz-keyframes rotate{from{-moz-transform: rotate(0deg)}
+      to{-moz-transform: rotate(359deg)}
+    }
+    @-o-keyframes rotate{from{-o-transform: rotate(0deg)}
+      to{-o-transform: rotate(359deg)}
+    }
+    @keyframes rotate{from{transform: rotate(0deg)}
+      to{transform: rotate(359deg)}
+    }
+}
