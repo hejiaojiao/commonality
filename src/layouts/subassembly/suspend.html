@@ -5,7 +5,10 @@
     <div class="col-sm-12 margin-top-10" ng-controller="suspendController">
         <div class="panel panel-default">
             <div class="panel-body clearfix" style="height: 200px;overflow-y: auto">
-                <div class="dropdown pull-left">
+                <button class="btn btn-warning" type="button" suspend-alert alert-content="{{userNmae.name}}">鼠标hover显示</button>
+                <button class="btn btn-warning" type="button" suspend-alert open-Way="click" alert-content="{{userNmae.name}}">点击显示</button>
+
+                <div class="dropdown pull-right">
                     <button class="btn btn-default" type="button" ng-click="dropdownClick()">点击我</button>
                     <ul class="dropdown-menu">
                         <li>aaaaaaaaaaa</li>
@@ -17,8 +20,6 @@
                         </li>
                     </ul>
                 </div>
-
-                <button class="btn btn-warning pull-right" type="button" suspend-alert alert-content="{{userNmae.name}}">鼠标hover显示</button>
             </div>
         </div>
     </div>

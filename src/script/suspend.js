@@ -42,7 +42,6 @@
                     '<div class="alert-box" id="alert-box"><div class="alert-content"></div><div class="close-icon fa fa-close"></div></div>' +
                     '</div>';
                 $document.find('body').append($html);
-                $document.find('body').css({'position': 'relative'});
                 /*计算触发点的位置*/
                 var target = $event.target,
                     offsetTop = target.offsetTop,
@@ -87,7 +86,13 @@
                     });
                 }
             }
-
+            /*移除*/
+            function removeContent(){
+                $document.find('.pos-alert-content').remove();
+                $(window).resize(function () {
+                    $document.find('.pos-alert-content').remove();
+                });
+            }
             if (attrs.openWay == 'click') {
                 /*click显示提示*/
                 element.click(function ($event) {
@@ -98,12 +103,18 @@
                     $document.find('.close-icon').css('display','block');
                     $document.find('.alert-content').css('padding-right','20px');
                     $document.find('.close-icon').click(function(){
-                        $document.find('.pos-alert-content').remove();
-                        $(window).resize(function () {
-                            $document.find('.pos-alert-content').remove();
-                        });
-                    })
+                        removeContent();
+                    });
+                    /*判断是否在当前页面*/
+                    if(element){
+                        var element1 = element == true;
+                        scope.$watch('element1',function(newVal,oldVal){
+                            console.log(oldVal);
+                            console.log(newVal)
+                        })
+                    }
                 });
+
             } else {
                 /*hover显示提示*/
                 element.mouseover(function ($event) {
@@ -113,10 +124,7 @@
                     });
                 });
                 element.mouseout(function () {
-                    $document.find('.pos-alert-content').remove();
-                    $(window).resize(function () {
-                        $document.find('.pos-alert-content').remove();
-                    });
+                    removeContent();
                 });
             }
         }

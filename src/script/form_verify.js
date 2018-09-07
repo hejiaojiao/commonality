@@ -8,7 +8,7 @@ angular.module('commonalityApp')
         /*接口调用*/
         var currentPage = 0;
         $scope.query = function (currentPage) {
-            $http.get('http://10.6.23.13:3081/applogs/api/logs?page=' + currentPage + '&size=10').then(function success(data) {
+            $http.get('http://10.6.23.13:30811/applogs/api/logs?page=' + currentPage + '&size=10').then(function success(data) {
                 if (data.status == 200) {
                     $scope.conditionList = data.data;
                     $scope.dataList = data.data.content;
