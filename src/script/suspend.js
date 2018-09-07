@@ -104,6 +104,7 @@
                     $document.find('.alert-content').css('padding-right','20px');
                     $document.find('.close-icon').click(function(){
                         removeContent();
+
                     });
                     /*判断是否在当前页面*/
                     if(element){
