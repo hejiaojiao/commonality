@@ -27,8 +27,8 @@
     }
 
     /*悬浮框*/
-    suspendAlert.$inject = ['$document'];
-    function suspendAlert($document) {
+    suspendAlert.$inject = ['$document','$rootScope'];
+    function suspendAlert($document,$rootScope) {
         return {
             restrict: 'A',
             scope: {
@@ -46,6 +46,7 @@
                 var target = $event.target,
                     offsetTop = target.offsetTop,
                     offsetLeft = target.offsetLeft,
+                    //targetId = $event.target(),
                     offsetParent = target.offsetParent;
                 while (offsetParent != null) {
                     offsetTop += offsetParent.offsetTop + offsetParent.clientTop;
@@ -85,6 +86,8 @@
                         'top': offsetTop - alert_content_h - 10 + 'px'
                     });
                 }
+
+                console.log($document.find('#alert_')[0].id+1)
             }
             /*移除*/
             function removeContent(){
@@ -104,28 +107,15 @@
                     $document.find('.alert-content').css('padding-right','20px');
                     $document.find('.close-icon').click(function(){
                         removeContent();
-
                     });
-                    /*判断是否在当前页面*/
-                    if(element){
-                        var element1 = element == true;
-                        scope.$watch('element1',function(newVal,oldVal){
-                            console.log(oldVal);
-                            console.log(newVal)
-                        })
-                    }
                 });
-
             } else {
                 /*hover显示提示*/
                 element.mouseover(function ($event) {
                     locationFun($event);
-                    $(window).resize(function () {
-                        locationFun($event);
-                    });
                 });
                 element.mouseout(function () {
-                    removeContent();
+                    $document.find('.pos-alert-content').remove();
                 });
             }
         }
